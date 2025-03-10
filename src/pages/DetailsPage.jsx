@@ -7,6 +7,10 @@ import moment from 'moment';
 import Divider from '../components/Divider';
 import HorizontalScollCard from '../components/HorizontalScollCard';
 import VideoPlay from '../components/VideoPlay';
+import useReviews from '../hook/useReviews';
+import ReviewForm from '../components/ReviewForm';
+import ReviewList from '../components/ReviewList';
+import StarRating from '../components/StarRating';
 
 function DetailsPage() {
   const params = useParams()
@@ -17,6 +21,8 @@ function DetailsPage() {
   const {data :recommendationData} = useFetch (`/${params?.explore}/${params?.id}/recommendations`)
   const [ playVideo,setPlayVideo] = useState(false)
   const [playVideoId,setPlayVideoId] = useState("")
+
+  const { reviews, loading: reviewsLoading, error: reviewsError, avgRating, addReview } = useReviews(params?.id);
 
   console.log('data',data)
   console.log('star',casData)
@@ -106,11 +112,11 @@ function DetailsPage() {
 
           <Divider/>
           <h2 className='font-bold text-lg'>Cast :</h2>
-          <div className='grid grid-cols-[repeat(auto-fit,96px)] gap-5'>
+          <div className='flex gap-5 overflow-x-auto'>
             {
-              casData?.cast?.filter(el => el?.profile_path).map((cast,index) => {
+              casData?.cast?.filter(el => el?.profile_path)?.slice(0, 10).map((cast,index) => {
                 return(
-                  <div>
+                  <div  key={index} className="w-[96px] flex-shrink-0">
                     <div>
                       <img 
                         src={imageURL+cast?.profile_path} 
@@ -123,6 +129,31 @@ function DetailsPage() {
               })
             }
           </div>
+
+            {/* เพิ่มส่วนนี้ก่อนถึงส่วน Similar และ Recommendation */}
+            <div className="container mx-auto px-3 py-8">
+              <h2 className="text-2xl font-bold text-white mb-6">รีวิวและให้คะแนน</h2>
+              
+              {/* แสดงคะแนนเฉลี่ย */}
+              <div className="mb-6 flex items-center">
+                <div className="bg-gradient-to-r from-red-500 to-amber-500 text-white text-xl font-bold px-4 py-2 rounded-lg flex items-center">
+                  <span className="text-2xl mr-1">{avgRating.toFixed(1)}</span>
+                  <span className="text-sm">/5</span>
+                </div>
+                <div className="ml-4">
+                  <StarRating rating={avgRating} readOnly size="lg" />
+                  <p className="text-neutral-400 mt-1">จาก {reviews.length} {reviews.length === 1 ? 'รีวิว' : 'รีวิว'}</p>
+                </div>
+              </div>
+              
+              {/* ฟอร์มรีวิว */}
+              <div className="mb-10">
+                <ReviewForm movieId={params?.id} onReviewSubmitted={addReview} />
+              </div>
+              
+              {/* รายการรีวิว */}
+              <ReviewList reviews={reviews} loading={reviewsLoading} error={reviewsError} />
+            </div>
 
         </div>
       </div>
