@@ -66,7 +66,7 @@ function DetailsPage() {
 
           <div className='flex items-center gap-3'>
             <p>
-              Rating : {Number(data?.vote_average).toFixed(1)}+
+              Rating : {avgRating.toFixed(1)}
             </p>
             <span>|</span>
             <p>
