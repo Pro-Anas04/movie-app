@@ -54,7 +54,7 @@ function Header() {
             <input 
               type="text" 
               placeholder='Search here...' 
-              className='bg-transparent px-4 py-1 outline-none border-none hidden lg:block' 
+              className='px-4 py-1 outline-none border bg-neutral-400/50 bg-gradient-to-l border-neutral-400  rounded-md  hidden lg:block' 
               onChange={(e)=> setSearchInput(e.target.value)}
               value={searchInput}
             />
