@@ -16,7 +16,7 @@ const ReviewForm = ({ movieId, onReviewSubmitted }) => {
     setError(null);
 
     if (!name || !lastname || !rating || !comment) {
-      setError('กรุณากรอกข้อมูลให้ครบทุกช่อง');
+      setError('Please fill in all fields.');
       setIsSubmitting(false);
       return;
     }
@@ -55,7 +55,7 @@ const ReviewForm = ({ movieId, onReviewSubmitted }) => {
 
   return (
     <div className="bg-gray-800 p-6 rounded-lg shadow-md">
-      <h3 className="text-xl font-bold text-white mb-4">เขียนรีวิว</h3>
+      <h3 className="text-xl font-bold text-white mb-4">Write a review</h3>
       
       {error && (
         <div className="bg-red-600 text-white p-3 rounded mb-4">
@@ -66,40 +66,40 @@ const ReviewForm = ({ movieId, onReviewSubmitted }) => {
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           <div>
-            <label className="block text-gray-300 mb-2">ชื่อ</label>
+            <label className="block text-gray-300 mb-2">First Name</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full bg-gray-700 text-white rounded p-2"
-              placeholder="ชื่อของคุณ"
+              placeholder="Your Fisrt Name"
             />
           </div>
           
           <div>
-            <label className="block text-gray-300 mb-2">นามสกุล</label>
+            <label className="block text-gray-300 mb-2">Last Name</label>
             <input
               type="lastname"
               value={lastname}
               onChange={(e) => setlastname(e.target.value)}
               className="w-full bg-gray-700 text-white rounded p-2"
-              placeholder="นามสกุลของคุณ"
+              placeholder="Your Last Name"
             />
           </div>
         </div>
         
         <div className="mb-4">
-          <label className="block text-gray-300 mb-2">คะแนน</label>
+          <label className="block text-gray-300 mb-2">Rating</label>
           <StarRating rating={rating} onRatingChange={setRating} />
         </div>
         
         <div className="mb-4">
-          <label className="block text-gray-300 mb-2">ความคิดเห็น</label>
+          <label className="block text-gray-300 mb-2">Comment</label>
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
             className="w-full bg-gray-700 text-white rounded p-2 min-h-[100px]"
-            placeholder="แสดงความคิดเห็นเกี่ยวกับหนังเรื่องนี้"
+            placeholder="Comment on this movie"
           />
         </div>
         
@@ -108,7 +108,7 @@ const ReviewForm = ({ movieId, onReviewSubmitted }) => {
           disabled={isSubmitting}
           className="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded transition duration-300 disabled:opacity-50"
         >
-          {isSubmitting ? 'กำลังบันทึก...' : 'ส่งรีวิว'}
+          {isSubmitting ? 'Recording...' : 'Submit a review'}
         </button>
       </form>
     </div>

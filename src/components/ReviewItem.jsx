@@ -1,11 +1,9 @@
 import { formatDistanceToNow } from 'date-fns';
-import { th } from 'date-fns/locale';
 import StarRating from './StarRating.jsx';
 
 const ReviewItem = ({ review }) => {
   const formattedDate = formatDistanceToNow(new Date(review.created_at), {
     addSuffix: true,
-    locale: th
   });
 
   return (

@@ -5,7 +5,7 @@ const AverageRating = ({ rating, count }) => {
     <div className="flex items-center mb-4">
       <StarRating rating={rating} readOnly size="lg" />
       <span className="ml-2 text-white text-lg">
-        {rating.toFixed(1)} ({count} {count === 1 ? 'รีวิว' : 'รีวิว'})
+        {rating.toFixed(1)} ({count} {count === 1 ? 'review' : 'review'})
       </span>
     </div>
   );

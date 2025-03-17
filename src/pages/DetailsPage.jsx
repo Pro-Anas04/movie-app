@@ -132,7 +132,7 @@ function DetailsPage() {
 
             {/* เพิ่มส่วนนี้ก่อนถึงส่วน Similar และ Recommendation */}
             <div className="container mx-auto px-3 py-8">
-              <h2 className="text-2xl font-bold text-white mb-6">รีวิวและให้คะแนน</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">Reviews and Ratings</h2>
               
               {/* แสดงคะแนนเฉลี่ย */}
               <div className="mb-6 flex items-center">
@@ -142,7 +142,7 @@ function DetailsPage() {
                 </div>
                 <div className="ml-4">
                   <StarRating rating={avgRating} readOnly size="lg" />
-                  <p className="text-neutral-400 mt-1">จาก {reviews.length} {reviews.length === 1 ? 'รีวิว' : 'รีวิว'}</p>
+                  <p className="text-neutral-400 mt-1">จาก {reviews.length} {reviews.length === 1 ? 'review' : 'review'}</p>
                 </div>
               </div>
               
