@@ -4,7 +4,7 @@ import StarRating from './StarRating.jsx';
 
 const ReviewForm = ({ movieId, onReviewSubmitted }) => {
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [lastname, setlastname] = useState('');
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,7 +15,7 @@ const ReviewForm = ({ movieId, onReviewSubmitted }) => {
     setIsSubmitting(true);
     setError(null);
 
-    if (!name || !email || !rating || !comment) {
+    if (!name || !lastname || !rating || !comment) {
       setError('กรุณากรอกข้อมูลให้ครบทุกช่อง');
       setIsSubmitting(false);
       return;
@@ -28,7 +28,7 @@ const ReviewForm = ({ movieId, onReviewSubmitted }) => {
           {
             movie_id: movieId,
             name,
-            email,
+            lastname,
             rating,
             comment,
           },
@@ -39,7 +39,7 @@ const ReviewForm = ({ movieId, onReviewSubmitted }) => {
 
       // รีเซ็ตฟอร์ม
       setName('');
-      setEmail('');
+      setlastname('');
       setRating(0);
       setComment('');
       
@@ -77,13 +77,13 @@ const ReviewForm = ({ movieId, onReviewSubmitted }) => {
           </div>
           
           <div>
-            <label className="block text-gray-300 mb-2">อีเมล</label>
+            <label className="block text-gray-300 mb-2">นามสกุล</label>
             <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="lastname"
+              value={lastname}
+              onChange={(e) => setlastname(e.target.value)}
               className="w-full bg-gray-700 text-white rounded p-2"
-              placeholder="อีเมลของคุณ"
+              placeholder="นามสกุลของคุณ"
             />
           </div>
         </div>
